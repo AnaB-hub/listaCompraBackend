@@ -8,7 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.listacompra.listaCompra.produto.Produto;
@@ -28,8 +29,12 @@ public class Compra implements Serializable{
 	
 	private String nome;
 	
-	@OneToMany
-	@JoinColumn(name="id")
+	@ManyToMany
+	@JoinTable(
+		name="tb_compra_produto",
+		joinColumns = @JoinColumn(name="compra_id"),
+		inverseJoinColumns = @JoinColumn(name="produto_id")
+	)
 	private List<Produto> produtos;
 
 	public int getId() {
