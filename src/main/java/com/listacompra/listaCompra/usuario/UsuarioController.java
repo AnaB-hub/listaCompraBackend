@@ -54,5 +54,11 @@ public class UsuarioController {
 	private void deleteUsuario(@PathVariable(value="id") int id) {
 		usuarioRepository.deleteById(id);
 	}
-
+	
+	@GetMapping("/usuario/findByUser/{user}")
+	@ApiOperation(value="Retorna usuário pelo nome de usuário")
+	Usuario usuarioByUser(@PathVariable(value="user")String user) {
+		return usuarioRepository.findByUsuario(user);
+	}
+	
 }
