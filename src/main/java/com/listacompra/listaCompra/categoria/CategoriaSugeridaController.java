@@ -31,12 +31,14 @@ public class CategoriaSugeridaController {
 	}
 	
 	@PostMapping("/categorias-sugeridas")
+	@ApiOperation(value="Cadastro de categoria sugerida")
 	private CategoriaSugerida saveCategoriaSugerida(
 			@RequestBody CategoriaSugerida categoriaSugerida) {
 		return categoriaSugeridaRepository.save(categoriaSugerida);
 	}
 	
 	@DeleteMapping("/categorias-sugeridas/{id}")
+	@ApiOperation(value="Exclusão de categoria sugerida")
 	private void deleteCategoriaSugerida(@PathVariable(value="id") int id) {
 		categoriaSugeridaRepository.deleteById(id);
 	}

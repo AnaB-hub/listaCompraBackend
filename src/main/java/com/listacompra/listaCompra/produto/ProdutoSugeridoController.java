@@ -30,7 +30,7 @@ public class ProdutoSugeridoController {
 	ProdutoSugeridoRepository produtoSugeridoRepository;
 	
 	@GetMapping("/produtos-sugeridos")
-	@ApiOperation(value="Lista de produtos sugeridas")
+	@ApiOperation(value="Lista de produtos sugeridos")
 	private List<ProdutoSugerido> produtos() {
 		List<ProdutoSugerido> produtos = produtoSugeridoRepository.findAll();
 		Collections.sort(produtos, Comparator.comparing(ProdutoSugerido::getNome));
@@ -38,12 +38,14 @@ public class ProdutoSugeridoController {
 	}
 	
 	@PostMapping("/produtos-sugeridos")
+	@ApiOperation(value="Cadastro produtos sugeridos")
 	private ProdutoSugerido saveProdutoSugerido(
 			@RequestBody ProdutoSugerido produtoSugerido) {
 		return produtoSugeridoRepository.save(produtoSugerido);
 	}
 	
 	@DeleteMapping("/produtos-sugeridos/{id}")
+	@ApiOperation(value="Exclusão de produto sugerido")
 	private void deleteProdutoSugerido(@PathVariable(value="id") int id) {
 		produtoSugeridoRepository.deleteById(id);
 	}
