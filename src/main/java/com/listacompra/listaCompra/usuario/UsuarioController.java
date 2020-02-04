@@ -3,6 +3,7 @@ package com.listacompra.listaCompra.usuario;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,6 +41,7 @@ public class UsuarioController {
 	@PostMapping("/usuario")
 	@ApiOperation(value="Cadastro de usuário")
 	Usuario saveUsuario(@RequestBody Usuario usuario) {
+		usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
 		return usuarioRepository.save(usuario);
 	}
 	
